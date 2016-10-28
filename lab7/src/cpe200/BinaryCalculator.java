@@ -1,37 +1,32 @@
 package cpe200;
 
-public class BinaryCalculator {
-    public IOperand firstOperand;
-    public IOperand secondOperand;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
+public class BinaryCalculator extends BaseCalculator {
+    private MathContext mathContext;
+
+    private IOperand firstOperand;
+    private IOperand secondOperand;
 
     public BinaryCalculator() {
     }
 
-    public void setFirstOperand(IOperand operand) {
-    }
-
-    public void setSecondOperand(IOperand operand) {
-    }
-
-    public String add() throws RuntimeException {
-        return null;
-    }
-
-    public String subtract() throws RuntimeException {
-        return null;
-    }
-
-    public String multiply() throws RuntimeException {
-        return null;
-    }
-
-    /* This method should throw an exception when divide by zero */
-    public String division() throws RuntimeException {
-        return null;
-    }
-
-    public String power() throws RuntimeException {
-        return null;
+    @Override
+    protected BigDecimal makeBigDecimal(IOperand op) {
+        String binaryString = op.getOperandBase2();
+        long numerator = Long.parseLong(binaryString.replace(".", ""), 2);
+        double value = (double) numerator;
+        int pointIndex = binaryString.indexOf(".");
+        if (pointIndex != -1) {
+            int placesAfterPoint = binaryString.length() - pointIndex - 1;
+            value /= (1L << placesAfterPoint);
+        }
+        String str = Double.toString(value);
+        BigDecimal ret = new BigDecimal(str);
+        return ret;
     }
 
 }
+

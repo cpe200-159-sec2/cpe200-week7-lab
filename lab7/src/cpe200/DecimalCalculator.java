@@ -2,11 +2,11 @@ package cpe200;
 
 import java.math.BigDecimal;
 
-public class BinaryCalculator {
+public class DecimalCalculator {
     private BigDecimal firstOperand;
     private BigDecimal secondOperand;
 
-    public BinaryCalculator() {
+    public DecimalCalculator() {
     }
 
     public void setFirstOperand(IOperand operand) {

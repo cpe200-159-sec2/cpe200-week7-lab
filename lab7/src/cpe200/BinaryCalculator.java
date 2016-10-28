@@ -24,9 +24,23 @@ public class BinaryCalculator {
         this.secondOperand = operand;
     }
 
+    private BigDecimal makeBigDecimal(IOperand op) {
+        String binaryString = op.getOperandBase2();
+        long numerator = Long.parseLong(binaryString.replace(".", ""), 2);
+        double value = (double) numerator;
+        int pointIndex = binaryString.indexOf(".");
+        if (pointIndex != -1) {
+            int placesAfterPoint = binaryString.length() - pointIndex - 1;
+            value /= (1L << placesAfterPoint);
+        }
+        String str = Double.toString(value);
+        BigDecimal ret = new BigDecimal(str);
+        return ret;
+    }
+
     public String add() throws RuntimeException {
-        BigDecimal op1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal op2 = new BigDecimal(secondOperand.getOperand());
+        BigDecimal op1 = makeBigDecimal(firstOperand);
+        BigDecimal op2 = makeBigDecimal(secondOperand);
         if (op1.signum() == -1 || op2.signum() == -1) {
             throw new RuntimeException("Does not operate on negative numbers");
         }
@@ -35,8 +49,8 @@ public class BinaryCalculator {
     }
 
     public String subtract() throws RuntimeException {
-        BigDecimal op1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal op2 = new BigDecimal(secondOperand.getOperand());
+        BigDecimal op1 = makeBigDecimal(firstOperand);
+        BigDecimal op2 = makeBigDecimal(secondOperand);
         if (op1.signum() == -1 || op2.signum() == -1) {
             throw new RuntimeException("Does not operate on negative numbers");
         }
@@ -45,8 +59,8 @@ public class BinaryCalculator {
     }
 
     public String multiply() throws RuntimeException {
-        BigDecimal op1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal op2 = new BigDecimal(secondOperand.getOperand());
+        BigDecimal op1 = makeBigDecimal(firstOperand);
+        BigDecimal op2 = makeBigDecimal(secondOperand);
         if (op1.signum() == -1 || op2.signum() == -1) {
             throw new RuntimeException("Does not operate on negative numbers");
         }
@@ -56,8 +70,8 @@ public class BinaryCalculator {
 
     /* This method should throw an exception when divide by zero */
     public String division() throws RuntimeException {
-        BigDecimal op1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal op2 = new BigDecimal(secondOperand.getOperand());
+        BigDecimal op1 = makeBigDecimal(firstOperand);
+        BigDecimal op2 = makeBigDecimal(secondOperand);
         if (op1.signum() == -1 || op2.signum() == -1) {
             throw new RuntimeException("Does not operate on negative numbers");
         }
@@ -66,8 +80,8 @@ public class BinaryCalculator {
     }
 
     public String power() throws RuntimeException {
-        BigDecimal op1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal op2 = new BigDecimal(secondOperand.getOperand());
+        BigDecimal op1 = makeBigDecimal(firstOperand);
+        BigDecimal op2 = makeBigDecimal(secondOperand);
         if (op1.signum() == -1 || op2.signum() == -1) {
             throw new RuntimeException("Does not operate on negative numbers");
         }

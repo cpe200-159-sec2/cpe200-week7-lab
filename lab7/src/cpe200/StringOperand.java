@@ -12,3 +12,4 @@ public class StringOperand implements IOperand {
         return operand;
     }
 }
+

@@ -2,14 +2,7 @@ package cpe200;
 
 import java.math.BigDecimal;
 
-public class BinaryCalculator {
-    private BigDecimal firstOperand;
-    private BigDecimal secondOperand;
-
-    public BinaryCalculator() {
-        setFirstOperand(new BigDecimal(0));
-        setSecondOperand(new BigDecimal(0));
-    }
+public class BinaryCalculator extends BaseCalculator{
 
     public void setFirstOperand(IOperand operand) {
         Binarycheck(operand);
@@ -58,22 +51,6 @@ public class BinaryCalculator {
             throw new RuntimeException("Negative value");
         }
         return Integer.toBinaryString(getFirstOperand().pow(getSecondOperand().intValue()).stripTrailingZeros().intValue());
-    }
-
-    public BigDecimal getFirstOperand() {
-        return firstOperand;
-    }
-
-    public BigDecimal getSecondOperand() {
-        return secondOperand;
-    }
-
-    public void setFirstOperand(BigDecimal firstOperand) {
-        this.firstOperand = firstOperand;
-    }
-
-    public void setSecondOperand(BigDecimal secondOperand) {
-        this.secondOperand = secondOperand;
     }
 
     private void Binarycheck(IOperand check) throws ArithmeticException {

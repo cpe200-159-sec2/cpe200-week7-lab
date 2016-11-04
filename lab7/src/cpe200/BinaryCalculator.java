@@ -2,10 +2,7 @@ package cpe200;
 
 import java.math.BigDecimal;
 
-public class BinaryCalculator {
-    private BigDecimal firstOperand;
-    private BigDecimal secondOperand;
-    private BigDecimal result;
+public class BinaryCalculator extends BaseCalculator{
 
     public Integer BinaryToDecimal(IOperand operand){
         int dec = Integer.parseInt(operand.getOperand(),2);
@@ -18,6 +15,11 @@ public class BinaryCalculator {
     }
 
     public BinaryCalculator() {
+    }
+
+    public void BinaryCheck(IOperand operand) throws ArithmeticException{
+        if (operand.getOperand().matches("[01]+")){}
+        else throw new ArithmeticException("Not Binary");
     }
 
     public void setFirstOperand(IOperand operand) {
@@ -75,10 +77,5 @@ public class BinaryCalculator {
         }
         result = firstOperand.pow(secondOperand.intValue()).stripTrailingZeros();
         return DecimalToBinary(result);
-    }
-
-    public void BinaryCheck(IOperand operand) throws ArithmeticException{
-        if (operand.getOperand().matches("[01]+")){}
-        else throw new ArithmeticException("New Binary");
     }
 }

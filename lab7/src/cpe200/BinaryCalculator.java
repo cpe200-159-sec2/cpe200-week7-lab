@@ -1,37 +1,32 @@
 package cpe200;
 
-public class BinaryCalculator {
-    public IOperand firstOperand;
-    public IOperand secondOperand;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-    public BinaryCalculator() {
-    }
 
-    public void setFirstOperand(IOperand operand) {
-    }
+ public class BinaryCalculator extends Calculator {
+     private IOperand firstOperand;
+     private IOperand secondOperand;
 
-    public void setSecondOperand(IOperand operand) {
-    }
+     public BinaryCalculator() {
+     }
 
-    public String add() throws RuntimeException {
-        return null;
-    }
+     public void setFirstOperand(IOperand operand) {
+         if (operand.getOperand().matches("[01]+"))
 
-    public String subtract() throws RuntimeException {
-        return null;
-    }
+             firstOperand = new StringOperand(Integer.toString(Integer.parseInt(operand.getOperand(), 2)));
 
-    public String multiply() throws RuntimeException {
-        return null;
-    }
 
-    /* This method should throw an exception when divide by zero */
-    public String division() throws RuntimeException {
-        return null;
-    }
+         else
+             throw new ArithmeticException("Operand is not binary");
+     }
 
-    public String power() throws RuntimeException {
-        return null;
-    }
 
-}
+     public void setSecondOperand(IOperand operand) {
+         if (operand.getOperand().matches("[01]+"))
+
+             secondOperand = new StringOperand(Integer.toString(Integer.parseInt(operand.getOperand(), 2)));
+         else
+             throw new ArithmeticException("Operand is not binary");
+     }
+ }

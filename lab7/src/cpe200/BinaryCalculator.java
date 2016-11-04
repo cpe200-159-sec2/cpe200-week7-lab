@@ -3,75 +3,52 @@ package cpe200;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class BinaryCalculator {
+public class BinaryCalculator extends BaseCalculator{
     public IOperand firstOperand;
     public IOperand secondOperand;
 
     public BinaryCalculator() {
     }
 
+    public boolean isBinary(IOperand operand){
+        return operand.getOperand().matches("^[01]+");
+    }
+
     public void setFirstOperand(IOperand operand) {
-        firstOperand = operand;
+        if(isBinary(operand)){
+            setFirstOperand(new BigDecimal((Integer.parseInt(operand.getOperand()))));
+        }else{
+            throw new ArithmeticException("This number is not Binary.");
+        }
     }
 
     public void setSecondOperand(IOperand operand) {
-        secondOperand = operand;
+        if(isBinary(operand)){
+            setSecondOperand(new BigDecimal((Integer.parseInt(operand.getOperand()))));
+        }else{
+            throw new ArithmeticException("This number is not Binary.");
+        }
     }
 
     public String add() throws RuntimeException {
-        BigDecimal one = new BigDecimal(firstOperand.getOperand());
-        BigDecimal two = new BigDecimal(secondOperand.getOperand());
-
-        if(one.signum()==-1||two.signum()==-1){
-            throw new RuntimeException();
-        }else{
-            return one.add(two).stripTrailingZeros().toString();
-        }
+        return Integer.toBinaryString(addBase().intValue());
     }
 
     public String subtract() throws RuntimeException {
-        BigDecimal one = new BigDecimal(firstOperand.getOperand());
-        BigDecimal two = new BigDecimal(secondOperand.getOperand());
-
-        if(one.signum()==-1||two.signum()==-1){
-            throw new RuntimeException();
-        }else{
-            return one.subtract(two).stripTrailingZeros().toString();
-        }
+        return Integer.toBinaryString(subtractBase().intValue());
     }
 
     public String multiply() throws RuntimeException {
-        BigDecimal one = new BigDecimal(firstOperand.getOperand());
-        BigDecimal two = new BigDecimal(secondOperand.getOperand());
-
-        if(one.signum()==-1||two.signum()==-1){
-            throw new RuntimeException();
-        }else{
-            return one.multiply(two).stripTrailingZeros().toString();
-        }
+        return Integer.toBinaryString(multiplyBase().intValue());
     }
 
     /* This method should throw an exception when divide by zero */
     public String division() throws RuntimeException {
-        BigDecimal one = new BigDecimal(firstOperand.getOperand());
-        BigDecimal two = new BigDecimal(secondOperand.getOperand());
-
-        if(one.signum()==-1||two.signum()==-1){
-            throw new RuntimeException();
-        }else{
-            return one.divide(two,5, RoundingMode.HALF_UP).stripTrailingZeros().toString();
-        }
+        return Integer.toBinaryString(divisionBase().intValue());
     }
 
     public String power() throws RuntimeException {
-        BigDecimal one = new BigDecimal(firstOperand.getOperand());
-        BigDecimal two = new BigDecimal(secondOperand.getOperand());
-
-        if(one.signum() == -1 || two.signum() == -1){
-            throw new RuntimeException();
-        }else{
-            return one.pow(two.intValueExact()).stripTrailingZeros().toString();
-        }
+       return Integer.toBinaryString(powerBase().intValue());
     }
 
 }

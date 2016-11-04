@@ -15,12 +15,16 @@ public class BaseCalculator {
     public BaseCalculator(){
     }
 
-    public void setSecondOperand(BigDecimal big){
-        secondOperand = big;
+    public void setFirstOperand(BigDecimal bigDecimal){
+        firstOperand = bigDecimal;
+    }
+
+    public void setSecondOperand(BigDecimal bigDecimal){
+        secondOperand = bigDecimal;
     }
 
     public BigDecimal addBase() throws RuntimeException {
-        if(getFirstOperand().doubleValue()<0||getSecondOperand().doubleValue()<0){
+        if(getFirstOperand().signum()==-1||getSecondOperand().signum()==-1){
             throw new RuntimeException("Negative value");
         }else {
             return getFirstOperand().add(getSecondOperand()).stripTrailingZeros();
@@ -28,7 +32,7 @@ public class BaseCalculator {
     }
 
     public BigDecimal subtractBase() throws RuntimeException {
-        if(getFirstOperand().doubleValue()<0||getSecondOperand().doubleValue()<0){
+        if(getFirstOperand().signum()==-1||getSecondOperand().signum()==-1){
             throw new RuntimeException("Negative value");
         }else {
             return getFirstOperand().subtract(getSecondOperand()).stripTrailingZeros();
@@ -36,7 +40,7 @@ public class BaseCalculator {
     }
 
     public BigDecimal multiplyBase() throws RuntimeException {
-        if(getFirstOperand().doubleValue()<0||getSecondOperand().doubleValue()<0){
+        if(getFirstOperand().signum()==-1||getSecondOperand().signum()==-1){
             throw new RuntimeException("Negative value");
         }else {
             return getFirstOperand().multiply(getSecondOperand()).stripTrailingZeros();
@@ -47,7 +51,7 @@ public class BaseCalculator {
     public BigDecimal divisionBase() throws RuntimeException {
         if(getSecondOperand().toString() == "0"){
             throw new ArithmeticException("divide by zero");
-        }else if(getFirstOperand().doubleValue()<0||getSecondOperand().doubleValue()<0) {
+        }else if(getFirstOperand().signum()==-1||getSecondOperand().signum()==-1) {
             throw new RuntimeException("Negative value");
         }else {
             return getFirstOperand().divide(getSecondOperand(), 5, RoundingMode.HALF_UP).stripTrailingZeros();
@@ -55,7 +59,7 @@ public class BaseCalculator {
     }
 
     public BigDecimal powerBase() throws RuntimeException {
-        if(getFirstOperand().doubleValue()<0||getSecondOperand().doubleValue()<0){
+        if(getFirstOperand().signum()==-1||getSecondOperand().signum()==-1){
             throw new RuntimeException("Negative value");
         }else {
             return getFirstOperand().pow(getSecondOperand().intValue()).stripTrailingZeros();

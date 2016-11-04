@@ -7,20 +7,40 @@ import java.math.BigDecimal;
 public class BinaryCalculator {
     private BigDecimal firstOperand;
     private BigDecimal secondOperand;
+    private BigDecimal first,second;
 
 
     public BinaryCalculator() {
-        setFirstOperand(new BigDecimal(0));
-        setSecondOperand(new BigDecimal(0));
+       /* setFirstOperand(new BigDecimal(0));
+        setSecondOperand(new BigDecimal(0));*/
 
+    }
+    public void Binary(IOperand check) throws ArithmeticException{
+        if(check.getOperand().matches("[01]+")){
+
+        }else{
+            throw new ArithmeticException("Not Binary");
+        }
     }
 
     public void setFirstOperand(IOperand operand) {
-        setFirstOperand(new BigDecimal(operand.getOperand()));
+        Binary(operand);
+        firstOperand=new BigDecimal(Binary2Decimal(operand));
+
+    }
+    public Integer Binary2Decimal(IOperand binary){
+
+        return Integer.parseInt(binary.getOperand(),2);
+
+    }
+    public String Decimal2Binary(BigDecimal decimal){
+        return Integer.toBinaryString(decimal.intValue());
+
     }
 
     public void setSecondOperand(IOperand operand) {
-        setSecondOperand(new BigDecimal(operand.getOperand()));
+        Binary(operand);
+        secondOperand=new BigDecimal(Binary2Decimal(operand));
 
     }
 
@@ -28,7 +48,7 @@ public class BinaryCalculator {
        if(firstOperand.intValue()<0||secondOperand.intValue()<0){
            throw new RuntimeException("ERROR");
        }
-        return getFirstOperand().add(getSecondOperand()).stripTrailingZeros().toString();
+        return Decimal2Binary(getFirstOperand().add(getSecondOperand().stripTrailingZeros()));
     }
 
     public String subtract() throws RuntimeException {
@@ -36,16 +56,18 @@ public class BinaryCalculator {
             throw new RuntimeException("ERROR");
 
         }
-        return getFirstOperand().subtract(getSecondOperand()).stripTrailingZeros().toString();
+        return Decimal2Binary(getFirstOperand().subtract(getSecondOperand()).stripTrailingZeros());
 
     }
 
     public String multiply() throws RuntimeException {
+
+
         if(firstOperand.intValue()<0||secondOperand.intValue()<0){
             throw new RuntimeException("ERROR");
-
         }
-        return getFirstOperand().multiply(getSecondOperand()).stripTrailingZeros().toString();
+        return Decimal2Binary(getFirstOperand().multiply(getSecondOperand()).stripTrailingZeros());
+        //return getFirstOperand().multiply(getSecondOperand()).stripTrailingZeros().toString();
 
     }
 
@@ -57,14 +79,14 @@ public class BinaryCalculator {
         }else if(secondOperand.intValue()==0){
             throw new ArithmeticException("ERROR");
         }
-        return getFirstOperand().divide(getSecondOperand(),5,BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toString();
+        return Decimal2Binary(getFirstOperand().divide(getSecondOperand(),5,BigDecimal.ROUND_HALF_UP).stripTrailingZeros());
     }
 
     public String power() throws RuntimeException {
         if(firstOperand.intValue()<0||secondOperand.intValue()<0){
             throw new RuntimeException();
         }
-        return getFirstOperand().pow(getSecondOperand().intValue()).stripTrailingZeros().toString();
+        return Decimal2Binary(getFirstOperand().pow(getSecondOperand().intValue()).stripTrailingZeros());
 
     }
     public BigDecimal getFirstOperand(){
@@ -74,20 +96,15 @@ public class BinaryCalculator {
         return secondOperand;
     }
     public void setFirstOperand(BigDecimal firstOperand){
+
         this.firstOperand=firstOperand;
+
     }
     public void setSecondOperand(BigDecimal secondOperand){
         this.secondOperand=secondOperand;
     }
 
-   /* private Integer Binary2Decimal(IOperand binary){
-        return Integer.parseInt(binary.getOperand(),2);
 
-    }
-    private String Decimal2Binary(BigDecimal decimal){
-        return Integer.toBinaryString(decimal.intValue());
-
-    }*/
 
 
 

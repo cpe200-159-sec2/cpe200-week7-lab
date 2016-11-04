@@ -2,20 +2,11 @@ package cpe200;
 
 import java.math.BigDecimal;
 
-public class DecimalCalculator {
+public class DecimalCalculator extends BaseCalculator{
     private BigDecimal firstOperand;
     private BigDecimal secondOperand;
 
     public DecimalCalculator() {
-    }
-
-    public void setFirstOperand(IOperand operand) {
-        setFirstOperand(new BigDecimal(operand.getOperand()));
-    }
-
-
-    public void setSecondOperand(IOperand operand) {
-        setSecondOperand(new BigDecimal(operand.getOperand()));
     }
 
     public String add() throws RuntimeException {
@@ -44,22 +35,6 @@ public class DecimalCalculator {
         int powered=getFirstOperand().intValue();
         if(getSecondOperand().intValue()<0||getFirstOperand().intValue()<0)throw new RuntimeException("ERROR");
         return getFirstOperand().stripTrailingZeros().pow(getSecondOperand().intValue()).stripTrailingZeros().toString();
-    }
-
-    public BigDecimal getFirstOperand() {
-        return firstOperand;
-    }
-
-    public void setFirstOperand(BigDecimal firstOperand) {
-        this.firstOperand = firstOperand;
-    }
-
-    public BigDecimal getSecondOperand() {
-        return secondOperand;
-    }
-
-    public void setSecondOperand(BigDecimal secondOperand) {
-        this.secondOperand = secondOperand;
     }
 
 }

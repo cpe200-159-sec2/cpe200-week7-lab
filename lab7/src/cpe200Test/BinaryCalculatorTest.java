@@ -4,9 +4,6 @@ import cpe200.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-
 import static org.junit.Assert.*;
 
 

@@ -3,16 +3,16 @@ package cpe200;
 /**
  * Created by pruet on 26/9/2559.
  */
-public class IntegerOperand implements IOperand {
+public class IntegerOperand implements Bigdecimal {
 
-    private Integer Operand;
+    private String Operand;
 
     public IntegerOperand(int i) {
-        this.Operand = i ;
+        this.Operand = Integer.toString(i) ;
     }
 
     @Override
     public String getOperand() {
-        return Integer.toString(this.Operand);
+        return this.Operand.toString();
     }
 }

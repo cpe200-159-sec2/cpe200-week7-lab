@@ -3,12 +3,12 @@ package cpe200;
 /**
  * Created by pruet on 26/9/2559.
  */
-public class DoubleOperand implements IOperand{
+public class DoubleOperand implements Bigdecimal {
 
-    private Double Operand;
+    private String Operand;
 
     public DoubleOperand(Double d) {
-        this.Operand = d;
+        this.Operand = Double.toString(d);
     }
 
     @Override

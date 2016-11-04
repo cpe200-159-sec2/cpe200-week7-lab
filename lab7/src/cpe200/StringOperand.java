@@ -1,6 +1,6 @@
 package cpe200;
 
-public class StringOperand implements IOperand {
+public class StringOperand implements BigDecimal {
     private String operand;
 
     public StringOperand(String operand) {

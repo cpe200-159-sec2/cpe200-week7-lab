@@ -3,7 +3,7 @@ package cpe200;
 /**
  * Created by pruet on 26/9/2559.
  */
-public class DoubleOperand implements BigDecimal {
+public class DoubleOperand implements Bigdecimal {
     private String operand;
 
     public DoubleOperand(Double d) {

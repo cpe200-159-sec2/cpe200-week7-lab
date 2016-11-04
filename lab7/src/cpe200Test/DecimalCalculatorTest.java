@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
 
 
 public class DecimalCalculatorTest {
-    BigDecimal firstOperand;
-    BigDecimal secondOperand;
+    Bigdecimal firstOperand;
+    Bigdecimal secondOperand;
     DecimalCalculator decimalCalculator;
 
     @Before

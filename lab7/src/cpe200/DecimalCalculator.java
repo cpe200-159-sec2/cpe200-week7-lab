@@ -1,19 +1,20 @@
 package cpe200;
+import java.math.BigDecimal;
 
 public class DecimalCalculator {
-    private java.math.BigDecimal firstOperand;
-    private java.math.BigDecimal secondOperand;
-    private java.math.BigDecimal first,second,sum;
+    private BigDecimal firstOperand;
+    private BigDecimal secondOperand;
+    private BigDecimal first,second,sum;
 
     public DecimalCalculator() {
     }
 
-    public void setFirstOperand(BigDecimal operand) {
-        first=new java.math.BigDecimal(operand.getOperand());
+    public void setFirstOperand(Bigdecimal operand) {
+        first=new BigDecimal(operand.getOperand());
     }
 
-    public void setSecondOperand(BigDecimal operand) {
-        second=new java.math.BigDecimal(operand.getOperand());
+    public void setSecondOperand(Bigdecimal operand) {
+        second=new BigDecimal(operand.getOperand());
     }
 
     public String add() throws RuntimeException {

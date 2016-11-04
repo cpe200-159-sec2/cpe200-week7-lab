@@ -1,8 +1,8 @@
 package cpe200;
 
 /**
- * Created by pruet on 26/9/2559.
+ * Created by nanear_ss on 4/11/2559.
  */
-public interface BigDecimal {
+public interface Bigdecimal {
     String getOperand();
 }

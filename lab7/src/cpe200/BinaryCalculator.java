@@ -70,8 +70,6 @@ public class BinaryCalculator {
         //return getFirstOperand().multiply(getSecondOperand()).stripTrailingZeros().toString();
 
     }
-
-    /* This method should throw an exception when divide by zero */
     public String division() throws RuntimeException {
         if(firstOperand.intValue()<0||secondOperand.intValue()<0){
             throw new RuntimeException("ERROR");

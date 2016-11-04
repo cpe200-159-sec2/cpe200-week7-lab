@@ -9,12 +9,10 @@ public class DecimalCalculator {
     }
 
     public void setFirstOperand(BigDecimal operand) {
-       // firstOperand=operand;
         first=new java.math.BigDecimal(operand.getOperand());
     }
 
     public void setSecondOperand(BigDecimal operand) {
-       // secondOperand=operand;
         second=new java.math.BigDecimal(operand.getOperand());
     }
 

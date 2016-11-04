@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 /**
  * Created by GGG on 5/11/2559.
  */
+
 public class BaseCalculator {
     protected BigDecimal firstOperand;
     protected BigDecimal secondOperand;

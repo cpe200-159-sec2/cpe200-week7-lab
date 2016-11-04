@@ -8,8 +8,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import static org.junit.Assert.*;
-
-
 public class DecimalCalculatorTest {
     IOperand firstOperand;
     IOperand secondOperand;

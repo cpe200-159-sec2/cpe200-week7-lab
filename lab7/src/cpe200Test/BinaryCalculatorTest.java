@@ -583,10 +583,10 @@ public class BinaryCalculatorTest {
         Field field = StringOperand.class.getDeclaredField("operand");
         assertFalse(Modifier.isPublic(field.getModifiers()));
 
-        field = BinaryCalculator.class.getDeclaredField("firstOperand");
+        field = Calculator.class.getDeclaredField("firstOperand");
         assertFalse(Modifier.isPublic(field.getModifiers()));
 
-        field = BinaryCalculator.class.getDeclaredField("secondOperand");
+        field = Calculator.class.getDeclaredField("secondOperand");
         assertFalse(Modifier.isPublic(field.getModifiers()));
     }
 

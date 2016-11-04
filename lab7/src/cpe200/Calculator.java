@@ -1,77 +1,59 @@
 package cpe200;
 
-import java.math.BigDecimal;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Calculator {
-    public IOperand firstOperand;
-    public IOperand secondOperand;
+    protected IOperand firstOperand;
+    protected IOperand secondOperand;
 
     public Calculator() {
     }
 
-    public void setFirstOperand(IOperand operand) {
-        firstOperand = operand;
+    public String add() {
+        BigDecimal temp1 = new BigDecimal(firstOperand.getOperand());
+        BigDecimal temp2 = new BigDecimal(secondOperand.getOperand());
+        if (temp1.compareTo(BigDecimal.ZERO) < 0 || temp2.compareTo(BigDecimal.ZERO) < 0)
+            throw new RuntimeException();
+        else
+            temp1 = temp1.add(temp2).stripTrailingZeros();
+        return temp1.toString();
     }
 
-    public void setSecondOperand(IOperand operand) {
-        secondOperand = operand;
+    public String subtract() {
+        BigDecimal temp1 = new BigDecimal(firstOperand.getOperand());
+        BigDecimal temp2 = new BigDecimal(secondOperand.getOperand());
+        if (temp1.compareTo(BigDecimal.ZERO) < 0 || temp2.compareTo(BigDecimal.ZERO) < 0)
+            throw new RuntimeException();
+        return temp1.subtract(temp2).stripTrailingZeros().toString();
     }
 
-    public String add() throws RuntimeException {
-        BigDecimal d1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal d2 = new BigDecimal(secondOperand.getOperand());
-        if (d1.compareTo(BigDecimal.ZERO) < 0 || d2.compareTo(BigDecimal.ZERO) < 0) {
-             throw new RuntimeException("operand < 1");
-        }
-
-        return d1.add(d2).stripTrailingZeros().toString();
+    public String multiply() {
+        BigDecimal temp1 = new BigDecimal(firstOperand.getOperand());
+        BigDecimal temp2 = new BigDecimal(secondOperand.getOperand());
+        if (temp1.compareTo(BigDecimal.ZERO) < 0 || temp2.compareTo(BigDecimal.ZERO) < 0)
+            throw new RuntimeException();
+        return temp1.multiply(temp2).stripTrailingZeros().toString();
     }
 
-    public String subtract() throws RuntimeException {
-        BigDecimal d1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal d2 = new BigDecimal(secondOperand.getOperand());
-        if (d1.compareTo(BigDecimal.ZERO) < 0 || d2.compareTo(BigDecimal.ZERO) < 0) {
-            throw new RuntimeException("operand < 1");
-        }
-
-        return d1.subtract(d2).stripTrailingZeros().toString();
+    public String division() {
+        BigDecimal temp1 = new BigDecimal(firstOperand.getOperand());
+        BigDecimal temp2 = new BigDecimal(secondOperand.getOperand());
+        if (temp1.compareTo(BigDecimal.ZERO) < 0 || temp2.compareTo(BigDecimal.ZERO) < 0)
+            throw new RuntimeException();
+        if (temp1.compareTo(BigDecimal.ZERO) == 0)
+            throw new ArithmeticException();
+        temp2 = temp1.divide(temp2, 5, RoundingMode.HALF_UP).stripTrailingZeros();
+        return temp2.toString();
     }
 
-    public String multiply() throws RuntimeException {
-        BigDecimal d1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal d2 = new BigDecimal(secondOperand.getOperand());
-        if (d1.compareTo(BigDecimal.ZERO) < 0 || d2.compareTo(BigDecimal.ZERO) < 0) {
-            throw new RuntimeException("operand < 1");
-        }
-
-        return d1.multiply(d2).stripTrailingZeros().toString();
+    public String power() {
+        BigDecimal temp1 = new BigDecimal(firstOperand.getOperand());
+        BigDecimal temp2 = new BigDecimal(secondOperand.getOperand());
+        if (temp1.compareTo(BigDecimal.ZERO) < 0 || temp2.compareTo(BigDecimal.ZERO) < 0)
+            throw new RuntimeException();
+        temp1 = temp1.pow(temp2.intValue()).stripTrailingZeros();
+        return temp1.toString();
     }
-
-    public String division() throws RuntimeException {
-        BigDecimal d1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal d2 = new BigDecimal(secondOperand.getOperand());
-        if (d1.compareTo(BigDecimal.ZERO) < 0 || d2.compareTo(BigDecimal.ZERO) < 0) {
-            throw new RuntimeException("operand < 1");
-        }
-        if (d2.compareTo(BigDecimal.ZERO) == 0) {
-            throw new ArithmeticException("operand < 1");
-        }
-
-        return d1.divide(d2, 5, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toString();
-    }
-
-    public String power() throws RuntimeException {
-        BigDecimal d1 = new BigDecimal(firstOperand.getOperand());
-        BigDecimal d2 = new BigDecimal(secondOperand.getOperand());
-        if (d1.compareTo(BigDecimal.ZERO) < 0 || d2.compareTo(BigDecimal.ZERO) < 0) {
-            throw new RuntimeException("operand < 1");
-        }
-
-        d1 = d1.pow(d2.intValue());
-        d1 = d1.stripTrailingZeros();
-        return d1.toString();
-    }
-
-
 }

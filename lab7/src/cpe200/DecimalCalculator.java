@@ -1,37 +1,24 @@
 package cpe200;
 
-public class DecimalCalculator extends Calculator{
 
-    public IOperand firstOperand;
-    public IOperand secondOperand;
+import java.math.BigDecimal;
+
+public class DecimalCalculator extends Calculator {
+    private BigDecimal FOP;
+    private BigDecimal SOP;
 
     public DecimalCalculator() {
     }
 
     public void setFirstOperand(IOperand operand) {
+
+        super.firstOperand = operand;
+        FOP = new BigDecimal(firstOperand.getOperand());
     }
 
     public void setSecondOperand(IOperand operand) {
-    }
 
-    public String add() throws RuntimeException {
-        return null;
+        super.secondOperand = operand;
+        SOP = new BigDecimal(secondOperand.getOperand());
     }
-
-    public String subtract() throws RuntimeException {
-        return null;
-    }
-
-    public String multiply() throws RuntimeException {
-        return null;
-    }
-
-    public String division() throws RuntimeException {
-        return null;
-    }
-
-    public String power() throws RuntimeException {
-        return null;
-    }
-
 }

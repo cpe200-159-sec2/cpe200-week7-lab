@@ -22,42 +22,17 @@ public class BaseCalculator {
         secondOperand = new BigDecimal(operand.getOperand());
     }
 
-    public String add() throws RuntimeException {
-        if(getSecondOperand().intValue()<0||getFirstOperand().intValue()<0)throw new RuntimeException("Negative value");
-        return getFirstOperand().add(getSecondOperand()).stripTrailingZeros().toString();
-    }
-
-    public String subtract() throws RuntimeException {
-        if(getSecondOperand().intValue()<0||getFirstOperand().intValue()<0)throw new RuntimeException("Negative value");
-        return getFirstOperand().subtract(getSecondOperand()).stripTrailingZeros().toString();
-    }
-
-    public String multiply() throws RuntimeException {
-        if(getSecondOperand().intValue()<0||getFirstOperand().intValue()<0)throw new RuntimeException("Negative value");
-        return getFirstOperand().multiply(getSecondOperand()).stripTrailingZeros().toString();
-    }
-
-    /* This method should throw an exception when divide by zero */
-    public String division() throws RuntimeException {
-        if(getSecondOperand().intValue()<0||getFirstOperand().intValue()<0)throw new RuntimeException("Negative value");
-        secondOperand.toString();
-        if(secondOperand.equals("0")) {
-            throw new ArithmeticException("Divide by zero");
-        }
-        else{
-            return getFirstOperand().divide(getSecondOperand(),5,BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toString();
-        }
-    }
-
-    public String power() throws RuntimeException {
-        if(getSecondOperand().intValue()<0||getFirstOperand().intValue()<0)throw new RuntimeException("Negative value");
-        return  getFirstOperand().pow(getSecondOperand().intValue()).stripTrailingZeros().toString();
-    }
     public  BigDecimal getFirstOperand(){
         return firstOperand;
     }
     public  BigDecimal getSecondOperand(){
         return secondOperand;
+    }
+    public void setFirstOperand(BigDecimal firstOperand) {
+        this.firstOperand = firstOperand;
+    }
+    public void setSecondOperand(BigDecimal secondOperand){
+        this.secondOperand = secondOperand;
     }
 
 

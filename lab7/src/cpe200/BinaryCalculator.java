@@ -2,20 +2,32 @@ package cpe200;
 
 import java.math.BigDecimal;
 
-public class DecimalCalculator {
-    private BigDecimal firstOperand, secondOperand, result;
+public class BinaryCalculator {
+    private BigDecimal firstOperand;
+    private BigDecimal secondOperand;
+    private BigDecimal result;
 
-    public DecimalCalculator() {
-        firstOperand = new BigDecimal(0);
-        secondOperand = new BigDecimal(0);
+    public Integer BinaryToDecimal(IOperand operand){
+        int dec = Integer.parseInt(operand.getOperand(),2);
+        return dec;
     }
 
-    public void setFirstOperand(Bigdecimal operand) {
-        this.firstOperand = new BigDecimal(operand.getOperand());
+    public String DecimalToBinary(BigDecimal operand){
+        String bin = Integer.toBinaryString(operand.intValue());
+        return bin;
     }
 
-    public void setSecondOperand(Bigdecimal operand) {
-        this.secondOperand = new BigDecimal(operand.getOperand());
+    public BinaryCalculator() {
+    }
+
+    public void setFirstOperand(IOperand operand) {
+        BinaryCheck(operand);
+        firstOperand = new BigDecimal(BinaryToDecimal(operand));
+    }
+
+    public void setSecondOperand(IOperand operand) {
+        BinaryCheck(operand);
+        secondOperand = new BigDecimal(BinaryToDecimal(operand));
     }
 
     public String add() throws RuntimeException {
@@ -24,7 +36,7 @@ public class DecimalCalculator {
         } else {
             result = firstOperand.add(secondOperand).stripTrailingZeros();
         }
-        return result.toString();
+        return DecimalToBinary(result);
     }
 
     public String subtract() throws RuntimeException {
@@ -33,7 +45,7 @@ public class DecimalCalculator {
         } else {
             result = firstOperand.subtract(secondOperand).stripTrailingZeros();
         }
-        return result.toString();
+        return DecimalToBinary(result);
     }
 
     public String multiply() throws RuntimeException {
@@ -41,7 +53,7 @@ public class DecimalCalculator {
             throw new RuntimeException("Operand is negative");
         } else {
             result = firstOperand.multiply(secondOperand).stripTrailingZeros();
-            return result.toString();
+            return DecimalToBinary(result);
         }
     }
 
@@ -53,7 +65,7 @@ public class DecimalCalculator {
             throw new RuntimeException("Operand is negative");
         } else {
             result = firstOperand.divide(secondOperand,5, BigDecimal.ROUND_UP).stripTrailingZeros();
-            return result.toString();
+            return DecimalToBinary(result);
         }
     }
 
@@ -62,6 +74,11 @@ public class DecimalCalculator {
             throw new RuntimeException("Operand is negative");
         }
         result = firstOperand.pow(secondOperand.intValue()).stripTrailingZeros();
-        return result.toString();
+        return DecimalToBinary(result);
+    }
+
+    public void BinaryCheck(IOperand operand) throws ArithmeticException{
+        if (operand.getOperand().matches("[01]+")){}
+        else throw new ArithmeticException("New Binary");
     }
 }

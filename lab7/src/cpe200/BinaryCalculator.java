@@ -1,20 +1,38 @@
 package cpe200;
+
 import java.math.BigDecimal;
 
-public class DecimalCalculator {
-    private BigDecimal firstOperand;
-    private BigDecimal secondOperand;
-    private BigDecimal first,second,sum;
+public class BinaryCalculator {
+    private java.math.BigDecimal firstOperand;
+    private java.math.BigDecimal secondOperand;
+    private java.math.BigDecimal first,second,sum;
 
-    public DecimalCalculator() {
+    public BinaryCalculator() {
+    }
+    public Integer BinaryToDecimal(IOperand i ){
+        int dec=Integer.parseInt(i.getOperand(),2);
+        return dec;
+    }
+    public String DecimalToBinary (BigDecimal j){
+        String bin=Integer.toBinaryString(j.intValue());
+        return bin;
+    }
+    private void Binarycheck(IOperand check) throws ArithmeticException {
+        if(check.getOperand().matches("[01]+")) {
+        }else
+            throw new ArithmeticException("Not Binary");
     }
 
-    public void setFirstOperand(Bigdecimal operand) {
-        first=new BigDecimal(operand.getOperand());
+    public void setFirstOperand(IOperand operand) {
+        // firstOperand=operand;
+            Binarycheck(operand);
+            first=new java.math.BigDecimal(BinaryToDecimal(operand));
     }
 
-    public void setSecondOperand(Bigdecimal operand) {
-        second=new BigDecimal(operand.getOperand());
+    public void setSecondOperand(IOperand operand) {
+        // secondOperand=operand;
+        Binarycheck(operand);
+        second=new java.math.BigDecimal(BinaryToDecimal(operand));
     }
 
     public String add() throws RuntimeException {
@@ -22,7 +40,7 @@ public class DecimalCalculator {
             throw  new RuntimeException("Negative value");
         }
         sum=first.add(second).stripTrailingZeros();
-        return sum.toString();
+        return DecimalToBinary(sum);
     }
 
     public String subtract() throws RuntimeException {
@@ -30,7 +48,7 @@ public class DecimalCalculator {
             throw  new RuntimeException("Negative value");
         }
         sum=first.subtract(second).stripTrailingZeros();
-        return sum.toString();
+        return DecimalToBinary(sum);
     }
 
     public String multiply() throws RuntimeException {
@@ -38,7 +56,7 @@ public class DecimalCalculator {
             throw  new RuntimeException("Negative value");
         }
         sum=first.multiply(second).stripTrailingZeros();
-        return sum.toString();
+        return DecimalToBinary(sum);
     }
 
     /* This method should throw an exception when divide by zero */
@@ -48,7 +66,8 @@ public class DecimalCalculator {
         }else if(first.intValue()<0 ||second.intValue()<0){
             throw new RuntimeException("Negative value");
         }else {
-            return first.divide(second, 5, java.math.BigDecimal.ROUND_UP).stripTrailingZeros().toString();
+            sum=first.divide(second, 5, java.math.BigDecimal.ROUND_UP).stripTrailingZeros();
+            return DecimalToBinary(sum);
 
         }
     }
@@ -58,7 +77,7 @@ public class DecimalCalculator {
             throw  new RuntimeException("Negative value");
         }
         sum=first.pow(second.intValueExact()).setScale(0);
-        return sum.toString();
+        return DecimalToBinary(sum);
     }
 
 }

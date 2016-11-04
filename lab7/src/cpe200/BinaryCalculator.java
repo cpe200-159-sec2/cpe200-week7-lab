@@ -1,24 +1,33 @@
 package cpe200;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import java.math.BigDecimal;
 
 
-public class DecimalCalculator  {
+public class BinaryCalculator {
     private BigDecimal firstOperand;
     private BigDecimal secondOperand;
-
-    public DecimalCalculator() {
+    public void Check(IOperand check)throws ArithmeticException{
+        if(check.getOperand().matches("[01]+"));
+        else throw new ArithmeticException("Not Binary");
+    }
+    public Integer bin2dec(IOperand operand){
+        return Integer.parseInt(operand.getOperand(),2);
+    }
+    public BinaryCalculator() {
         setFirstOperand(new BigDecimal(0));
         setSecondOperand(new BigDecimal(0));
-
     }
 
     public void setFirstOperand(IOperand operand) {
-        setFirstOperand(new BigDecimal(operand.getOperand()));
+        Check(operand);
+        setFirstOperand(new BigDecimal(bin2dec(operand)));
     }
 
     public void setSecondOperand(IOperand operand) {
-        setSecondOperand(new BigDecimal(operand.getOperand()));
+        Check(operand);
+        setSecondOperand(new BigDecimal(bin2dec(operand)));
 
     }
 
@@ -26,7 +35,8 @@ public class DecimalCalculator  {
         if(firstOperand.intValue()<0||secondOperand.intValue()<0){
             throw new RuntimeException("ERROR");
         }
-        return getFirstOperand().add(getSecondOperand()).stripTrailingZeros().toString();
+
+        return Integer.toBinaryString(getFirstOperand().add(getSecondOperand()).stripTrailingZeros().intValue());
     }
 
     public String subtract() throws RuntimeException {
@@ -34,7 +44,7 @@ public class DecimalCalculator  {
             throw new RuntimeException("ERROR");
 
         }
-        return getFirstOperand().subtract(getSecondOperand()).stripTrailingZeros().toString();
+        return  Integer.toBinaryString(getFirstOperand().subtract(getSecondOperand()).stripTrailingZeros().intValue());
 
     }
 
@@ -43,7 +53,7 @@ public class DecimalCalculator  {
             throw new RuntimeException("ERROR");
 
         }
-        return getFirstOperand().multiply(getSecondOperand()).stripTrailingZeros().toString();
+        return Integer.toBinaryString(getFirstOperand().multiply(getSecondOperand()).stripTrailingZeros().intValue());
 
     }
    public String division() throws RuntimeException {
@@ -53,14 +63,14 @@ public class DecimalCalculator  {
         }else if(secondOperand.intValue()==0){
             throw new ArithmeticException("ERROR");
         }
-        return getFirstOperand().divide(getSecondOperand(),5,BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toString();
+        return Integer.toBinaryString(getFirstOperand().divide(getSecondOperand()).stripTrailingZeros().intValue());
     }
 
     public String power() throws RuntimeException {
         if(firstOperand.intValue()<0||secondOperand.intValue()<0){
             throw new RuntimeException();
         }
-        return getFirstOperand().pow(getSecondOperand().intValue()).stripTrailingZeros().toString();
+        return Integer.toBinaryString(getFirstOperand().pow(getSecondOperand().intValue()).stripTrailingZeros().intValue());
 
     }
     public BigDecimal getFirstOperand(){

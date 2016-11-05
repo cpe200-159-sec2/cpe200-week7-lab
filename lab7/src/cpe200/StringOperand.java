@@ -7,7 +7,6 @@ public class StringOperand implements IOperand {
         this.operand = operand;
     }
 
-    @Override
     public String getOperand() {
         return operand;
     }

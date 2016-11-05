@@ -3,15 +3,10 @@ package cpe200;
 /**
  * Created by i on 2/11/2559.
  */
-public class BinaryCalculator {
+public class BinaryCalculator extends BaseCalculator {
     private IOperand firstOperand;
     private IOperand secondOperand;
     private String pattern = "[01]+";
-
-    public BinaryCalculator() {
-        firstOperand = new StringOperand("0000");
-        secondOperand = new StringOperand("0000");
-    }
 
     public void setFirstOperand(IOperand operand) {
 
@@ -127,11 +122,6 @@ public class BinaryCalculator {
         else throw new ExceptionInInitializerError() ;
     }
 
-    public void checkException (double first , double second) {
-        if (first < 0 || second < 0) {
-            throw new RuntimeException();
-        }
-    }
 
     private boolean isValid (String n) {
         return n.matches(pattern);

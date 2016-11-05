@@ -8,11 +8,18 @@ public class DoubleOperand implements IOperand{
     private double doubleOperand;
 
     public DoubleOperand(Double d) {
-        doubleOperand = d;
+        setDoubleOperand(d);
     }
 
-    @Override
     public String getOperand() {
-        return Double.toString(this.doubleOperand);
+        return Double.toString(this.getDoubleOperand());
+    }
+
+    public double getDoubleOperand() {
+        return doubleOperand;
+    }
+
+    public void setDoubleOperand(double doubleOperand) {
+        this.doubleOperand = doubleOperand;
     }
 }

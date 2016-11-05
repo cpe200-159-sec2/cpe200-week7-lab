@@ -2,11 +2,7 @@ package cpe200;
 
 import java.math.BigDecimal;
 
-public class BinaryCalculator{
-
-    private BigDecimal firstOperand;
-    private BigDecimal secondOperand;
-    private BigDecimal result;
+public class BinaryCalculator extends BaseCalculator {
 
     public Integer binaryToDecimal(IOperand operand){
         int decimal = Integer.parseInt(operand.getOperand(), 2);

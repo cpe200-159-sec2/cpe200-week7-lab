@@ -2,44 +2,34 @@ package cpe200;
 
 import java.math.BigDecimal;
 
-public class BinaryCalculator extends BaseCalculator {
+/**
+ * Created by Nattawut on 6/11/2559.
+ */
+public class DecimalCalculator {
+    private BigDecimal firstOperand;
+    private BigDecimal secondOperand;
 
-    public BinaryCalculator() {
+
+    public DecimalCalculator() {
         firstOperand = new BigDecimal(0);
         secondOperand = new BigDecimal(0);
-    }
-
-    private void check(IOperand checkBinary) throws ArithmeticException {
-        if (checkBinary.getOperand().matches("[01]+")) ;
-        else throw new ArithmeticException();
     }
 
     public BigDecimal getFirstOperand() {
         return firstOperand;
     }
 
+    public void setFirstOperand(IOperand operand) {
+        firstOperand = new BigDecimal(operand.getOperand());
+    }
+
     public BigDecimal getSecondOperand() {
         return secondOperand;
     }
 
-    public void setFirstOperand(BigDecimal firstOperand) {
-        this.firstOperand = firstOperand;
-    }
-
-    public void setSecondOperand(BigDecimal secondOperand) {
-        this.secondOperand = secondOperand;
-    }
-
-    public void setFirstOperand(IOperand operand) {
-        check(operand);
-        setFirstOperand(new BigDecimal(Integer.parseInt(operand.getOperand(), 2)));
-    }
-
     public void setSecondOperand(IOperand operand) {
-        check(operand);
-        setSecondOperand(new BigDecimal(Integer.parseInt(operand.getOperand(), 2)));
+        secondOperand = new BigDecimal(operand.getOperand());
     }
-
 
     public String add() throws RuntimeException {
         if (getFirstOperand().intValue() < 0 || getSecondOperand().intValue() < 0) {
@@ -78,4 +68,9 @@ public class BinaryCalculator extends BaseCalculator {
         }
         return getFirstOperand().stripTrailingZeros().pow(getSecondOperand().intValue()).stripTrailingZeros().toString();
     }
+
 }
+
+
+
+

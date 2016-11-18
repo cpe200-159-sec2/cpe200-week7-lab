@@ -5,12 +5,14 @@ package cpe200;
  */
 public class DoubleOperand implements IOperand{
 
-    public DoubleOperand(Double d) {
+    private String Operand ;
 
+    public DoubleOperand(Double d) {
+        this.Operand = Double.toString(d);
     }
 
     @Override
     public String getOperand() {
-        return null;
+        return Operand;
     }
 }

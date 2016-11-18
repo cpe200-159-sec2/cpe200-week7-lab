@@ -19,7 +19,7 @@ public class BinaryCalculator {
     }
 
     public String add() throws RuntimeException {
-        if(firstOperand.intValue()<0 || secondOperand.intValue()<0) throw new RuntimeException("ERROR") ;
+        if(firstOperand.intValue()<0 || secondOperand.intValue()<0) throw new RuntimeException("ERROR5") ;
         return firstOperand.add(secondOperand).stripTrailingZeros().toString() ;
     }
 

@@ -3,13 +3,20 @@ package cpe200;
 import java.math.BigDecimal;
 
 public class BinaryCalculator extends BaseCalculator{
+    private BigDecimal firstOperand;
+    private BigDecimal secondOperand;
 
+    public BinaryCalculator() {
+        setFirstOperand(new BigDecimal(0));
+        setSecondOperand(new BigDecimal(0));
+    }
+    @Override
     public void setFirstOperand(IOperand operand) {
         Binarycheck(operand);
         setFirstOperand(new BigDecimal(Integer.parseInt(operand.getOperand(),2)));
 
     }
-
+    @Override
     public void setSecondOperand(IOperand operand) {
         Binarycheck(operand);
         setSecondOperand(new BigDecimal(Integer.parseInt(operand.getOperand(),2)));

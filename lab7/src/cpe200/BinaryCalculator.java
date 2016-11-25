@@ -1,78 +1,69 @@
 package cpe200;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
-public class BinaryCalculator {
+public class BinaryCalculator extends BaseCalculator{
     private BigDecimal firstOperand;
     private BigDecimal secondOperand;
 
     public BinaryCalculator() {
+        setFirstOperand(new BigDecimal(0));
+        setSecondOperand(new BigDecimal(0));
     }
-
-    public boolean isBinary(IOperand operand){
-        return operand.getOperand().matches("^[01]+");
-    }
-
+    @Override
     public void setFirstOperand(IOperand operand) {
-        if(isBinary(operand)) {
-            firstOperand = new BigDecimal(operand.getOperand());
-        }else{
-            throw new ArithmeticException("This is not Binary!!");
-        }
-    }
+        Binarycheck(operand);
+        setFirstOperand(new BigDecimal(Integer.parseInt(operand.getOperand(),2)));
 
+    }
+    @Override
     public void setSecondOperand(IOperand operand) {
-        if(isBinary(operand)) {
-            secondOperand = new BigDecimal(operand.getOperand());
-        }else{
-            throw new ArithmeticException("This is not Binary!!");
-        }
+        Binarycheck(operand);
+        setSecondOperand(new BigDecimal(Integer.parseInt(operand.getOperand(),2)));
     }
 
     public String add() throws RuntimeException {
-        if(firstOperand.intValue()<0||secondOperand.intValue()<0) {
-            throw new RuntimeException("Must Be Non-Negative Number");
-        }else {
-            return firstOperand.add(secondOperand).stripTrailingZeros().toString();
+        if (getFirstOperand().intValue() < 0 || getSecondOperand().intValue() < 0) {
+            throw new RuntimeException("Negative value");
         }
+        return Integer.toBinaryString(getFirstOperand().add(getSecondOperand()).stripTrailingZeros().intValue());
     }
 
     public String subtract() throws RuntimeException {
-        if(firstOperand.intValue()<0||secondOperand.intValue()<0) {
-            throw new RuntimeException("Must Be Non-Negative Number");
-        } else {
-            return firstOperand.subtract(secondOperand).stripTrailingZeros().toString();
+        if(getFirstOperand().intValue()<0||getSecondOperand().intValue()<0){
+            throw new RuntimeException("Negative value");
         }
+        return Integer.toBinaryString(getFirstOperand().subtract(getSecondOperand()).stripTrailingZeros().intValue());
     }
 
     public String multiply() throws RuntimeException {
-        if(firstOperand.intValue()<0||secondOperand.intValue()<0) {
-            throw new RuntimeException("Must Be Non-Negative Number");
-        } else {
-            return firstOperand.multiply(secondOperand).stripTrailingZeros().toString();
+        if(getFirstOperand().intValue()<0||getSecondOperand().intValue()<0){
+            throw new RuntimeException("Negative value");
         }
+        return Integer.toBinaryString(getFirstOperand().multiply(getSecondOperand()).stripTrailingZeros().intValue());
     }
 
-    /* This method should throw an exception when divide by zero */
     public String division() throws RuntimeException {
-        String result;
-        if(firstOperand.intValue()<0||secondOperand.intValue()<0) {
-            throw new RuntimeException("Must Be Non-Negative Number");
-        }else {
-            if (secondOperand.intValue() == 0) {
-                throw new ArithmeticException("Divided by Zero");
-            } else {
-                result = firstOperand.divide(secondOperand, 5, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toString();
-            }
-            return result;
+        if (getFirstOperand().intValue() < 0 || getSecondOperand().intValue() < 0) {
+            throw new RuntimeException("Negative value");
         }
+        if (getSecondOperand().intValue() == 0) {
+            throw new ArithmeticException("Divide by zero");
+        }
+        return Integer.toBinaryString(getFirstOperand().divide(getSecondOperand(), 5, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().intValue());
     }
 
     public String power() throws RuntimeException {
-        if(firstOperand.intValue()<0||secondOperand.intValue()<0) {
-            throw new RuntimeException("Must Be Non-Negative Number");
-        }else {
-            return firstOperand.pow(secondOperand.intValue()).stripTrailingZeros().toString();
+        if(getFirstOperand().intValue()<0||getSecondOperand().intValue()<0){
+            throw new RuntimeException("Negative value");
         }
+        return Integer.toBinaryString(getFirstOperand().pow(getSecondOperand().intValue()).stripTrailingZeros().intValue());
     }
+
+    private void Binarycheck(IOperand check) throws ArithmeticException {
+        if(check.getOperand().matches("[01]+"));
+        else throw new ArithmeticException("Not Binary");
+    }
+
 }
